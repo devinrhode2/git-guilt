@@ -1,18 +1,24 @@
 # git-guilt
 
-Calculates the change in blame between two revisions.
+Calculates the change in blame between two commits, or the blame for the entire repository tree at a particular commit.
+
+`git-guilt` is also available as a [Bitbucket add-on](https://gitguilt.com/bitbucket/atlassian-connect.json).
 
 ## Usage
 
-    git-guilt [<options>] <since> <until>
+     git-guilt [options] [<since>] [<until>]
+     git-guilt [options] [-a|--all] <commit-ish>
 
-    Options:
+     Options:
 
-      -h, --help               output usage information
-      -V, --version            output the version number
-      -e, --email              display author emails instead of names
-      -w, --ignore-whitespace  ignore whitespace only changes when attributing blame
-      -d, --debug              output debug information
+         -h, --help               output usage information
+         -V, --version            output the version number
+         -e, --email              display author emails instead of names
+         -w, --ignore-whitespace  ignore whitespace only changes when attributing blame
+         -X, --debug              output debug information
+         -a, --at                 display the total blame for the entire repository tree at a particular commit
+         -b, --batch-size <n>     specify the number of concurrent blame operations to run (minimum of 2, defaults to 4)
+         -d, --dir <path>         force git-guilt to run in the specified directory rather than attempt to detect the repository root
       
 ## Installation
 
@@ -24,7 +30,7 @@ Calculates the change in blame between two revisions.
 
 To see your blame delta after each commit, you can invoke git-guilt from a post-commit hook. Create an executable file at ``.git/hooks/post-commit`` and add the following:
 
-    #!/bin/sh    
+    #!/bin/sh
     git guilt HEAD~1 HEAD
 
 Then you should see blame delta information after each commit, e.g.:
@@ -86,6 +92,9 @@ Find blame delta for a topic branch:
 	Seb Ruiz             ----------
 	Adam Ahmed           ---------------------------------------------(-98)
 
+Find blame for the entire repository tree on master:
+	
+    $ git guilt -a master
 
-	
-	
+    Tim Pettersen           456
+    Richard Howard          3
