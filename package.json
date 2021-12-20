@@ -36,7 +36,7 @@
   "devDependencies": {
     "chai": "^3.4.1",
     "mocha": "^2.3.3",
-    "rewire": "^2.4.0",
+    "rewire": "^6.0.0",
     "temp": "^0.8.3"
   },
   "bin": {
