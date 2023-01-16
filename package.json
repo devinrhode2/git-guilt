@@ -28,7 +28,7 @@
   "dependencies": {
     "byline": "4.2.2",
     "colog": "1.0.2",
-    "commander": "2.1.0",
+    "commander": "10.0.0",
     "lodash": "3.8.0",
     "progress": "1.1.2",
     "string": "1.7.0"
